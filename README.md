@@ -562,3 +562,4 @@ SEED                = 42   # Global random seed
 
 *This project was developed as a capstone for Advanced Topics in the Semantic Web and Social Network Analysis.*
 # Privacy_Preserving_Sustainable_Supply_Chains_Through_Federated_Knowledge_Graph_Completion
+# Privacy_Preserving_Sustainable_Supply_Chains_Through_Federated_Knowledge_Graph_Completion
