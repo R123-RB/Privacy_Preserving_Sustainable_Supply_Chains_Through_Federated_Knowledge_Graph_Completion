@@ -1,0 +1,146 @@
+{
+  "notebook": "loadhalal_federated_kg_completion.ipynb",
+  "run_timestamp_utc": "2026-10-13T03:49:32+00:00",
+  "python": "3.12.3",
+  "torch": "2.14.1+cu130",
+  "numpy": "2.4.4",
+  "pandas": "3.0.2",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "config": {
+    "HIDDEN_DIM": 64,
+    "DROPOUT": 0.2,
+    "LEARNING_RATE": 0.01,
+    "NUM_BASES": 4,
+    "SUP_FRAC": 0.3,
+    "ID_FEATURE_DIM": 32,
+    "NUM_CLIENTS": 4,
+    "LOCAL_EPOCHS": 3,
+    "FED_ROUNDS": 20,
+    "CENTRAL_EPOCHS": 60,
+    "NEG_RATIO": 5,
+    "RANKING_CANDIDATES": 50,
+    "SPLIT": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "PAIRWISE_MASK_SIM": true,
+    "DP_SIGMA": 0.0,
+    "DP_CLIP_NORM": 1.0
+  },
+  "privacy_status": {
+    "differential_privacy": "OFF (DP_SIGMA=0): no (epsilon, delta) guarantee",
+    "secure_aggregation": "simulated pairwise masking in one process; not a deployable protocol"
+  },
+  "evaluation_protocol": "Protocol: 3 seeds; validation-tuned F1 threshold; 1 positive : 5 typed negatives (food x manufacturer, filtered; majority-class accuracy = 0.833); ranking = filtered manufacturer corruption of the tail, 50 candidates per positive (random baseline MRR ~ 0.0886, Hits@10 = 0.1961).",
+  "edge_quality": [
+    {
+      "relation": "has_manufacturer",
+      "raw_rows": 43101,
+      "dropped_missing_endpoint": 0,
+      "dropped_duplicates": 0,
+      "kept": 43101
+    },
+    {
+      "relation": "contains",
+      "raw_rows": 131340,
+      "dropped_missing_endpoint": 129098,
+      "dropped_duplicates": 0,
+      "kept": 2242
+    },
+    {
+      "relation": "halal_status",
+      "raw_rows": 43760,
+      "dropped_missing_endpoint": 831,
+      "dropped_duplicates": 0,
+      "kept": 42929
+    }
+  ],
+  "manufacturer_parse": {
+    "rows": 2520,
+    "names_with_commas": 815,
+    "names_truncated_by_usecols": 816
+  },
+  "per_seed_split_stats": {
+    "42": {
+      "train_edges": 34480,
+      "val_edges": 4310,
+      "test_edges": 4311,
+      "cross_client_train_target": 0.0,
+      "cross_client_val_target": 0.7638051044083527,
+      "cross_client_test_target": 0.7466945024356297,
+      "cross_client_contains": 0.42462087421944694,
+      "cross_client_halal_status": 0.15215821472664168,
+      "local_target_edges_per_client": [
+        8249,
+        8583,
+        9057,
+        8591
+      ],
+      "nodes_per_client": [
+        16818,
+        17089,
+        17500,
+        17037
+      ]
+    },
+    "43": {
+      "train_edges": 34480,
+      "val_edges": 4310,
+      "test_edges": 4311,
+      "cross_client_train_target": 0.0,
+      "cross_client_val_target": 0.739907192575406,
+      "cross_client_test_target": 0.7534214799350498,
+      "cross_client_contains": 0.3942908117752007,
+      "cross_client_halal_status": 0.1500384355563838,
+      "local_target_edges_per_client": [
+        8346,
+        8516,
+        9025,
+        8593
+      ],
+      "nodes_per_client": [
+        16988,
+        16890,
+        17546,
+        17020
+      ]
+    },
+    "44": {
+      "train_edges": 34480,
+      "val_edges": 4310,
+      "test_edges": 4311,
+      "cross_client_train_target": 0.0,
+      "cross_client_val_target": 0.751508120649652,
+      "cross_client_test_target": 0.751333797262816,
+      "cross_client_contains": 0.39875111507582517,
+      "cross_client_halal_status": 0.15115656083300333,
+      "local_target_edges_per_client": [
+        8322,
+        8612,
+        8980,
+        8566
+      ],
+      "nodes_per_client": [
+        16890,
+        17049,
+        17401,
+        17104
+      ]
+    }
+  },
+  "supplier_ranking_demo": {
+    "federated": {
+      "median_rank_all": 125.0,
+      "top10_all": 0.134,
+      "top100_all": 0.44,
+      "excluded_by_filter": 6,
+      "queries": 500
+    }
+  },
+  "leakage_acceptance_tests": "passed in prepare() for every seed"
+}

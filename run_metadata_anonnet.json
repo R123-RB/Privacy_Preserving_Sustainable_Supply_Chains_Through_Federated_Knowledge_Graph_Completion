@@ -1,0 +1,90 @@
+{
+  "notebook": "anonnet_federated_kg_completion.ipynb",
+  "run_timestamp_utc": "2026-10-13T03:44:48+00:00",
+  "python": "3.12.3",
+  "torch": "2.14.1+cu130",
+  "torch_geometric": "2.8.0.post1",
+  "numpy": "2.4.4",
+  "pandas": "3.0.2",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "config": {
+    "HIDDEN_DIM": 64,
+    "DROPOUT": 0.2,
+    "LEARNING_RATE": 0.01,
+    "SUP_FRAC": 0.3,
+    "NUM_CLIENTS": 4,
+    "LOCAL_EPOCHS": 3,
+    "FED_ROUNDS": 20,
+    "CENTRAL_EPOCHS": 60,
+    "NEG_RATIO": 5,
+    "RANKING_CANDIDATES": 50,
+    "SPLIT": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "PAIRWISE_MASK_SIM": true,
+    "DP_SIGMA": 0.0,
+    "DP_CLIP_NORM": 1.0,
+    "DP_DELTA": 1e-05
+  },
+  "privacy_status": {
+    "differential_privacy": "OFF (DP_SIGMA=0): no (epsilon, delta) guarantee in the reported runs",
+    "secure_aggregation": "simulated pairwise masking in one process; not a deployable protocol"
+  },
+  "evaluation_protocol": "Protocol: 3 seeds; validation-tuned F1 threshold; class balance 1 positive : 5 negatives (majority-class accuracy = 0.833); ranking = filtered either-endpoint corruption with 50 candidates per positive (random baseline MRR ~ 0.0886, Hits@10 = 0.1961).",
+  "data": {
+    "nodes": 7245,
+    "undirected_pairs": 41063,
+    "relation_column": null
+  },
+  "per_seed_split_stats": {
+    "42": {
+      "train_pairs": 32850,
+      "val_pairs": 4106,
+      "test_pairs": 4107,
+      "cross_client_train": 0.5117199391171994,
+      "cross_client_val": 0.5146127618119825,
+      "cross_client_test": 0.5183832481129779,
+      "local_train_edges_per_client": [
+        1496,
+        492,
+        4802,
+        9250
+      ]
+    },
+    "43": {
+      "train_pairs": 32850,
+      "val_pairs": 4106,
+      "test_pairs": 4107,
+      "cross_client_train": 0.5106849315068493,
+      "cross_client_val": 0.5172917681441792,
+      "cross_client_test": 0.5239834429023619,
+      "local_train_edges_per_client": [
+        1458,
+        495,
+        4810,
+        9311
+      ]
+    },
+    "44": {
+      "train_pairs": 32850,
+      "val_pairs": 4106,
+      "test_pairs": 4107,
+      "cross_client_train": 0.5119939117199391,
+      "cross_client_val": 0.5063321967851924,
+      "cross_client_test": 0.5244704163623083,
+      "local_train_edges_per_client": [
+        1458,
+        478,
+        4812,
+        9283
+      ]
+    }
+  },
+  "leakage_acceptance_tests": "passed in prepare() for every seed (disjoint splits; no held-out pair/reverse in any message graph; client isolation)"
+}
